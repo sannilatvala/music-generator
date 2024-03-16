@@ -1,0 +1,9 @@
+# Weekly report 1
+
+During the beginning of this week, I started exploring the different project ideas listed on the Moodle page. Additionally, I attended the introductory lecture for the course held on Wednesday, which provided valuable insights into different project topics. After hearing about the different topics presented during lecture and considering the options, I decided to develop a music generator using the Markov chain algorithm. 
+
+This week I have created the project repository on GitHub and configured the project dependencies using Poetry. Although I have not started coding the project yet, I have dedicated significant time to understanding the details of the Markov chain algorithm. Furthermore, I familiarized myself with the trie data structure, crucial for efficient sequence storage. Additionally, I created the project's specification document to outline the key functionalities and goals. 
+
+However, I acknowledge that I am still struggling with certain aspects of the project, particularly in terms of initiating the coding process. The algorithm and the topic of the project are relatively new to me, presenting a slight learning process. Additionally, determining the optimal input format for music data remains somewhat unclear. Nonetheless, I am confident that with continued research and exploration, I will gain the necessary insights to start the project effectively. 
+
+Throughout this week, I dedicated approximately 6 hours to project planning and research. Moving forward, my focus for the upcoming week will be to delve deeper into understanding the Markov chain algorithm and start coding the core functionalities of the project. Additionally, I aim to explore the different input formats for music data and decide the most suitable approach for my project.
