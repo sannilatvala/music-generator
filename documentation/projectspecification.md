@@ -38,19 +38,10 @@ English will be used for both the program code and documentation.
 
 ## Desired time and space complexities
 
-**Degree 1 Markov chain**
+The time complexity for a trie data structure would be O(WL), where
 
-Time Complexity: The time complexity is O(KN)
-
-Space Complexity: The space complexity is O(KN)
-
-**Degree 2 Markov chain**
-
-Time Complexity: The time complexity is O(K²N)
-
-Space Complexity: The space complexity is O(KN)
-
-K = number of states, N = number of time steps
+W = number if notes
+L = average length of the note
 
 ## Study program
 
