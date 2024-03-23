@@ -40,7 +40,8 @@ English will be used for both the program code and documentation.
 
 The time complexity for a trie data structure would be O(WL), where
 
-W = number if notes
+W = number of notes
+
 L = average length of the note
 
 ## Study program
