@@ -2,8 +2,7 @@ from invoke import task
 
 @task
 def start(ctx):
-    with ctx.cd("src"):
-        ctx.run("streamlit run app.py", pty=True)
+    ctx.run("streamlit run src/app.py", pty=True)
 
 @task
 def test(ctx):
