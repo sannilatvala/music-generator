@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["sannilatvala <119106675+sannilatvala@users.noreply.github.com>"]
 readme = "README.md"
-packages = [{include = "music_generator"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
