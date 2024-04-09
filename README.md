@@ -1,5 +1,7 @@
 ## Music generator
 
+![GHA workflow badge](https://github.com/sannilatvala/music-generator/workflows/CI/badge.svg)
+
 ### Documentation
 
 - [Project specification](https://github.com/sannilatvala/music-generator/blob/main/documentation/projectspecification.md)
