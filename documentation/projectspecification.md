@@ -30,7 +30,7 @@ Users can execute the program by providing musical input data and parameters via
 
 ## Programming language for the project
 
-The programming language that is used for developing this project is python. Additionally, I have some experience in JavaScript allowing me to peer review projects implemented in JavaScript if needed.
+The programming language that is used for developing this project is python.
 
 ## Language of the project documentation
 
