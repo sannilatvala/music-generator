@@ -1,6 +1,6 @@
-import streamlit as st
 from models.markov_chain import MarkovChain
 from midi.midi import MidiHandler
+from ansicolors import RED, GREEN, RESET
 
 
 class UserInterface:
@@ -10,37 +10,93 @@ class UserInterface:
 
     def __init__(self):
         self.midi = MidiHandler()
+        self.generated_sequence = None
+        self.midi_file = None
+        self.length = None
+        self.ngram = None
 
     def get_user_input(self):
-        notes = st.text_input("Input sequence of notes separated by spaces:")
-        midi_file = st.file_uploader("Upload MIDI file", type=['mid', 'midi'])
-        length = st.number_input(
-            "Length of the generated music sequence:", min_value=1, step=1)
-        return notes, midi_file, length
+        while True:
+            choice = input(
+                "\nDo you want to use your own midi file (Type 'O') or use one from the data (Type 'D')? ").strip().lower()
+            
+            if choice == "o":
+                self.midi_file = input(
+                    "\nPlease type the name of your MIDI file (make sure your file is in the 'midi' folder): ")
+                break
 
-    def generate_music(self, notes, length):
-        input_sequence = notes.split()
-        markov_chain = MarkovChain(input_sequence)
-        markov_chain.create_model()
-        generated_sequence = markov_chain.generate_sequence(length)
-        return generated_sequence
+            elif choice == "d":
+                self.midi_file = "TwinkleTwinkleLittleStar.mid"
+                print(GREEN + "\nUsing TwinkleTwinkleLittleStar.mid from the data" + RESET)
+                break
+            else:
+                print(
+                    RED + "\nInvalid choice. Please enter 'O' to use your own MIDI file or 'D' to use one from the data." + RESET)
+                self.get_user_input()
 
-    def display_generated_sequence(self, generated_sequence):
-        st.write("Generated sequence:", generated_sequence)
+        while True:
+            try:
+                self.length = int(
+                    input("\nDesired length of the generated music sequence (recommended: 20-50): "))
+                if self.length > 0:
+                    break
+                print(RED + "\nLength must be a positive integer." + RESET)
+
+            except ValueError:
+                print(RED + "\nInvalid input. Please enter a valid integer." + RESET)
+
+        while True:
+            try:
+                self.ngram = int(input("\nPlease enter the desired ngram size (recommended: 2-5): "))
+                if self.ngram > 0:
+                    break
+                print(RED + "\nNgram size must be a positive integer." + RESET)
+
+            except ValueError:
+                print(RED + "\nInvalid input. Please enter a valid integer." + RESET)
+
+    def generate_music(self):
+        input_sequence = self.midi.parse_midi_file(
+            self.midi_file)
+        if input_sequence:
+            markov_chain = MarkovChain(input_sequence, self.ngram)
+            markov_chain.create_model()
+            self.generated_sequence = markov_chain.generate_sequence(
+                self.length)
+        else:
+            print(RED + "\nNo valid notes found in MIDI file." + RESET)
 
     def start_ui(self):
-        st.title("Music Generator")
+        print("Music Generator")
 
-        notes, midi_file, length = self.get_user_input()
+        while True:
+            user_input = input(
+                "\nType 1 to upload midi file and generate music, 2 to save generated music to MIDI, and 0 to exit: ")
 
-        if st.button("Generate"):
-            if notes:
-                generated_sequence = self.generate_music(notes, length)
-                self.display_generated_sequence(generated_sequence)
-            elif midi_file is not None:
-                generated_sequence = self.midi.generate_music_from_midi(
-                    midi_file, length)
-                self.display_generated_sequence(generated_sequence)
-            else:
-                st.error(
-                    "Please provide input sequence of notes or upload a MIDI file.")
+            if user_input not in ("0", "1", "2"):
+                print(RED + "\nInvalid input. Please enter either 0, 1, or 2." + RESET)
+                continue
+
+            if user_input == "0":
+                break
+            if user_input == "1":
+                self.get_user_input()
+                if self.midi_file is not None:
+                    self.generate_music()
+                    if self.generated_sequence:
+                        print(
+                            GREEN + "\nSequence of notes generated successfully. Now you can type 2 to download MIDI file" + RESET)
+
+            if user_input == "2":
+                if self.generated_sequence:
+                    output_file = input(
+                        "\nEnter the name of the output MIDI file: ")
+                    self.midi.create_and_save_midi(
+                        self.generated_sequence, output_file)
+                    print(
+                        GREEN + "\nMIDI file saved to 'generatedfiles' folder" + RESET)
+                    print(
+                        GREEN + "\nNow you can play the notes using software or devices that support MIDI files" + RESET)
+                else:
+                    print(RED + "\nPlease generate music before saving" + RESET)
+                    continue
