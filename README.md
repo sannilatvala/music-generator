@@ -1,5 +1,7 @@
 ## Music generator
 
+The purpose of this application is to provide users tools for generating musical compositions based on their input MIDI files. The app generates a sequence of notes by utilizing the Markov chain algorithm and trie data structure for effective music generation and efficient data storage. Users can then download the generated MIDI file and play the generated sound on their preferred music software.
+
 ![GHA workflow badge](https://github.com/sannilatvala/music-generator/workflows/CI/badge.svg)
 
 ### Documentation
