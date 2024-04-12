@@ -7,7 +7,7 @@ class TrieNode:
 
 class Trie:
     """
-    A trie data structure for storing and retrieving data
+    A trie data structure for storing data
     """
 
     def __init__(self):

@@ -7,14 +7,14 @@ class MarkovChain:
     A markov chain model for music generation
     """
 
-    def __init__(self, notes):
-        self.unique_notes = list(set(notes))
+    def __init__(self, notes, ngram):
         self.notes = notes
+        self.ngram = ngram
         self.trie = Trie()
 
-    def create_model(self, ngram=1):
-        for i in range(len(self.notes)-ngram):
-            sequence = self.notes[i:i+ngram+1]
+    def create_model(self):
+        for i in range(len(self.notes)-self.ngram):
+            sequence = self.notes[i:i+self.ngram+1]
             self.trie.insert_notes(sequence)
 
     def generate_sequence(self, length):
