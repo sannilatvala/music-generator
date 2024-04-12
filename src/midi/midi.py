@@ -1,10 +1,11 @@
-import mido
-import streamlit as st
-from models.markov_chain import MarkovChain
+from pathlib import Path
 import os
+import mido
 
 
 class MidiHandler:
+    def __init__(self):
+        self.input_midi_file = None
 
     def parse_midi_file(self, midi_file):
         notes = []
@@ -12,28 +13,33 @@ class MidiHandler:
             # Get the directory of the current script file
             dirname = os.path.dirname(__file__)
             # Construct the full path of the MIDI file
-            file_path = os.path.join(dirname, midi_file.name)
+            file_path = os.path.join(dirname, midi_file)
 
-            with open(file_path, "wb") as file:
-                file.write(midi_file.getbuffer())
-            midi_file = mido.MidiFile(file_path)
-            for msg in midi_file:
-                if msg.type == "note_on":
+            self.input_midi_file = mido.MidiFile(file_path, clip=True)
+
+            for msg in self.input_midi_file:
+                if msg.type == "note_on" and msg.velocity != 0:
                     notes.append(msg.note)
 
         except Exception as e:
-            st.error(f"Error parsing MIDI file: {e}")
-        finally:
-            # Delete the temporary file
-            os.unlink(file_path)
+            print(f"\nError parsing MIDI file: {e}")
         return notes
 
-    def generate_music_from_midi(self, midi_file_path, length):
-        input_sequence = self.parse_midi_file(midi_file_path)
-        if input_sequence:
-            markov_chain = MarkovChain(input_sequence)
-            markov_chain.create_model()
-            generated_sequence = markov_chain.generate_sequence(length)
-            return generated_sequence
-        else:
-            st.error("No valid notes found in MIDI file.")
+    def create_and_save_midi(self, generated_sequence, output_file):
+        mid = mido.MidiFile()
+        track = mido.MidiTrack()
+        mid.tracks.append(track)
+
+
+        for note in generated_sequence:
+            track.append(mido.Message(
+                "note_on", note=note, velocity=64, time=250))
+            track.append(mido.Message(
+                "note_off", note=note, velocity=64, time=250))
+
+        generated_folder = Path("generatedfiles")
+        generated_folder.mkdir(exist_ok=True)
+
+        output_path = generated_folder.joinpath(output_file)
+
+        mid.save(output_path)
