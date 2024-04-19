@@ -13,7 +13,7 @@ class MidiHandler:
             # Get the directory of the current script file
             dirname = os.path.dirname(__file__)
             # Construct the full path of the MIDI file
-            file_path = os.path.join(dirname, midi_file)
+            file_path = os.path.join(dirname, "..", "assets", midi_file)
 
             self.input_midi_file = mido.MidiFile(file_path, clip=True)
 
@@ -29,13 +29,13 @@ class MidiHandler:
         mid = mido.MidiFile()
         track = mido.MidiTrack()
         mid.tracks.append(track)
-
+        track.append(mido.MetaMessage("set_tempo", tempo=mido.bpm2tempo(300)))
 
         for note in generated_sequence:
             track.append(mido.Message(
-                "note_on", note=note, velocity=64, time=250))
+                "note_on", note=note, velocity=64, time=100))
             track.append(mido.Message(
-                "note_off", note=note, velocity=64, time=250))
+                "note_off", note=note, velocity=64, time=700))
 
         generated_folder = Path("generatedfiles")
         generated_folder.mkdir(exist_ok=True)
@@ -43,3 +43,5 @@ class MidiHandler:
         output_path = generated_folder.joinpath(output_file)
 
         mid.save(output_path)
+
+        return output_path
