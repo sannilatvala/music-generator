@@ -23,6 +23,7 @@ class TestMidiHandler(unittest.TestCase):
     def test_create_and_save_midi(self):
         generated_sequence = [44, 45, 47, 49, 50, 52, 54, 56]
         output_file = "output.mid"
-        output_path = self.midi_handler.create_and_save_midi(generated_sequence, output_file)
+        output_path = self.midi_handler.create_and_save_midi(
+            generated_sequence, output_file)
         self.assertTrue(output_path.exists())
         output_path.unlink()
