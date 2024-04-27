@@ -1,8 +1,7 @@
 import os
+import pygame
 from ansicodes import RED, RESET
 
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-import pygame
 
 class MidiPlayer:
     def __init__(self):
