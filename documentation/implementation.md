@@ -61,3 +61,9 @@ The structure of the project is divided into several components:
 
     - RiverFlowsInYou.mid: https://freemidi.org/download3-15836-river-flows-in-you-yiruma
     - FurElise.mid: https://freemidi.org/download3-26718-fur-elise-artists-bands
+
+- Midi files obtained from bitmidi.com: https://bitmidi.com/
+
+    - https://bitmidi.com/beethoven-moonlight-sonata-mid
+    - https://bitmidi.com/nocturne-in-e-flat-opus-9-nr-2-mid
+    - https://bitmidi.com/yann-tiersen-une-comptine-dun-autre-mid
