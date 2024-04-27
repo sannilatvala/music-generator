@@ -8,6 +8,7 @@ The purpose of this application is to provide users tools for generating musical
 
 - [Project specification](https://github.com/sannilatvala/music-generator/blob/main/documentation/projectspecification.md)
 - [Implementation document](https://github.com/sannilatvala/music-generator/blob/main/documentation/implementation.md)
+- [Testing Document](https://github.com/sannilatvala/music-generator/blob/main/documentation/testing.md)
 - [User guide](https://github.com/sannilatvala/music-generator/blob/main/documentation/userguide.md)
 
 ### Weekly reports
@@ -17,3 +18,4 @@ The purpose of this application is to provide users tools for generating musical
 - [Weekly report 3](https://github.com/sannilatvala/music-generator/blob/main/documentation/weeklyreports/weeklyreport3.md)
 - [Weekly report 4](https://github.com/sannilatvala/music-generator/blob/main/documentation/weeklyreports/weeklyreport4.md)
 - [Weekly report 5](https://github.com/sannilatvala/music-generator/blob/main/documentation/weeklyreports/weeklyreport5.md)
+- [Weekly report 6](https://github.com/sannilatvala/music-generator/blob/main/documentation/weeklyreports/weeklyreport6.md)
