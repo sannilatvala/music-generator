@@ -1,3 +1,4 @@
+from operator import ne
 import random
 from models.trie import Trie
 
@@ -7,40 +8,48 @@ class MarkovChain:
     A markov chain model for music generation
     """
 
-    def __init__(self, notes, ngram):
-        self.notes = notes
+    def __init__(self, sequences, ngram):
+        self.sequences = sequences
         self.ngram = ngram
         self.trie = Trie()
 
     def create_model(self):
-        for i in range(len(self.notes)-self.ngram):
-            sequence = self.notes[i:i+self.ngram+1]
-            self.trie.insert_notes(sequence)
+        for sequence in self.sequences:
+            for i in range(len(sequence)-self.ngram):
+                notes = sequence[i:i+self.ngram+1]
+                self.trie.insert_notes(notes)
+
+    def get_next_note(self, notes):
+        current_sequence = notes
+
+        if self.trie.search_sequence(current_sequence):
+            next_notes = self.trie.get_next_notes(current_sequence)
+            return random.choices(list(next_notes.keys()), weights=list(next_notes.values()))[0]
+
+        return None
 
     def generate_sequence(self, length):
-        current_node = random.choice(list(self.trie.root.children.values()))
-        sequence = [current_node.note]
 
-        for _ in range(length - 1):
-            if current_node.end_of_sequence:
-                # if current node is not a child of the root (i.e, it is the last note of the
-                # sequence without chilren) choose a random node from the children of the root
-                if current_node.note in self.trie.root.children:
-                    current_node = self.trie.root.children[current_node.note]
-                else:
-                    current_node = random.choice(
-                        list(self.trie.root.children.values()))
-                    sequence.append(current_node.note)
-                    continue
+        attempts = 0
+        while attempts < 100:
+            start = random.choice(self.sequences[0])
+            sequence = [start]
 
-            transition_counts = [
-                node.transition_counts for node in current_node.children.values()]
+            # Construct the initial sequence based on the trie
+            while len(sequence) < self.ngram:
+                next_note = self.get_next_note(sequence)
+                sequence.append(next_note)
 
-            next_node = random.choices(
-                list(current_node.children.values()),
-                weights=transition_counts
-            )[0]
+            for _ in range(length - self.ngram):
+                next_note = self.get_next_note(sequence[-self.ngram:])
+                if next_note is None:
+                    break
+                sequence.append(next_note)
 
-            sequence.append(next_node.note)
-            current_node = next_node
-        return sequence
+            if len(sequence) == length:
+                return sequence
+
+            attempts += 1
+
+        # If the loop completes without generating a valid sequence, return an empty list
+        return []
