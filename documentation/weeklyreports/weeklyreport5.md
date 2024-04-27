@@ -1,4 +1,4 @@
-# Weekly report 4 
+# Weekly report 5
 
 This week I focused on refining the project's codebase and improving the user interface. I also created functionalities for playing the music to elevate the user experience. This allows users to play the generated music without the need for external software for playing the MIDI file. For this, I created the midi_player.py module, which utilizes pygame's mixer module for playing the music. 
 
