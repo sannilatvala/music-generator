@@ -1,4 +1,14 @@
 class TrieNode:
+    """
+    Represents a node in a Trie data structure.
+
+    Attributes:
+        note (int): The note associated with the node.
+        children (dict): A dictionary containing a node and its children.
+        transition_counts (int): The number of transitions from a node to its children.
+        end_of_sequence (bool): Indicates if the node marks the end of a sequence.
+    """
+
     def __init__(self, note=None):
         self.note = note
         self.children = {}
@@ -12,9 +22,19 @@ class Trie:
     """
 
     def __init__(self):
+        """
+        Initializes the Trie with an empty root node.
+        """
+
         self.root = TrieNode()
 
     def insert_notes(self, notes):
+        """
+        Inserts a sequence of notes into the Trie.
+
+        Args:
+            notes (list): The list of notes to insert.
+        """
 
         current_node = self.root
 
@@ -28,6 +48,16 @@ class Trie:
         current_node.end_of_sequence = True
 
     def search_sequence(self, sequence):
+        """
+        Checks if a sequence of notes exists in the Trie.
+
+        Args:
+            sequence (list): The sequence of notes to search.
+
+        Returns:
+            bool: True if the sequence exists in the Trie, False otherwise.
+        """
+
         current_node = self.root
         for note in sequence:
             if note not in current_node.children:
@@ -42,10 +72,10 @@ class Trie:
         given a specific sequence of notes.
 
         Args:
-            sequence: The sequence of notes.
+            sequence (list): The sequence of notes.
 
         Returns:
-            A dictionary where keys are the possible next notes and values
+            Dictionary: A dictionary where keys are the possible next notes and values
             are their corresponding transition counts.
         """
 

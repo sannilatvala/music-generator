@@ -1,13 +1,29 @@
 import os
-import pygame
 from ansicodes import RED, RESET
+
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "true"
+import pygame
 
 
 class MidiPlayer:
+    """
+    A class for playing MIDI files.
+    """
+
     def __init__(self):
         pygame.mixer.init()
 
     def play_midi_file(self, midi_file):
+        """
+        Plays a MIDI file.
+
+        Args:
+            midi_file (str): The filepath of the MIDI file to play.
+
+        Raises:
+            KeyboardInterrupt: If playback is interrupted by the user.
+        """
+
         try:
             pygame.mixer.music.load(midi_file)
             pygame.mixer.music.play()
