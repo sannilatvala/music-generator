@@ -29,7 +29,7 @@ The structure of the project is divided into several components:
     - MIDI Player (midi_player.py): Module for playing MIDI files using the pygame library.
 
 - Assets:
-    - Directory containing sample MIDI files or other input data used for training the model.
+    - Folder containing sample MIDI files and other input data used for training the model.
 
 ### Tests Directory (tests):
 
@@ -51,9 +51,30 @@ The structure of the project is divided into several components:
 
 ## Time and Space Complexities
 
-## Potential Shortcomings and Improvements
+- Trie data structure: 
+    - The time complexity for a trie data structure is O(W*L), where W is the number of notes and L is the average length of each sequence.
+    - The space complexity for a trie data structure is O(N*k), where N is the number of nodes in the trie and k is the number of unique notes.
+
+- Markov Chain: The time complexity for the generate_sequence() method in the Markov Chain class is O(n*m). Where n is the desired length of the generated sequence and m is the number of attempts made. In the worst case, where the loop runs for 100 attempts without finding a valid sequence, m would be 100.
+
+## Potential Shortcomings
+
+- MIDI file handling: The quality of the music and the MIDI file handling could be improved. To do this it's essential to invest time in developing algorithms to accurately identify the melody channel within MIDI files. While the application performs well with simple songs primarily composed of piano music, refining the channel selection process can further enhance its performance across a broader range of musical compositions.
+
+- User Input Handling: The user interface class relies on command-line input, which might not provide the most user-friendly experience. Adding a graphical user interface or web interface could enhance usability.
+
+## Potential Improvements
+
+- Enhance error handling mechanisms and provide more informative error messages.
+
+- Improving the quality of the code.
+
+- Adding more comments to clarify logic.
+
 
 ## Use of Extensive Language Models
+
+I have used ChatGPT to explain me parts of how the algorithms I used works, as I've noticed that ChatGPT is good at explaining the logic behind code. In addition, whenever I've had trouble with errors in my code that I couldn't quite figure out, I've asked ChatGPT to pinpoint the issue and suggest ways to fix it.
 
 ## References
 
@@ -64,6 +85,6 @@ The structure of the project is divided into several components:
 
 - Midi files obtained from bitmidi.com: https://bitmidi.com/
 
-    - https://bitmidi.com/beethoven-moonlight-sonata-mid
-    - https://bitmidi.com/nocturne-in-e-flat-opus-9-nr-2-mid
-    - https://bitmidi.com/yann-tiersen-une-comptine-dun-autre-mid
+    - BeethovenMoonlightSonata.mid: https://bitmidi.com/beethoven-moonlight-sonata-mid
+    - Nocturne.mid: https://bitmidi.com/nocturne-in-e-flat-opus-9-nr-2-mid
+    - UneComptineD'unAutre.mid: https://bitmidi.com/yann-tiersen-une-comptine-dun-autre-mid
