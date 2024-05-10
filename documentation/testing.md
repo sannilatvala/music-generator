@@ -10,6 +10,8 @@
 
 - test_generated_note_chains_in_original_notes: Checks if all note chains, with a length of ngram+1, in the generated sequence are present in the original sequences. This ensures that the markov chain algorithm and trie data structure works correctly.
 
+- test_generate_sequence_returns_empty_list: Tests that the generate_sequence method returns an empty list when no valid sequences can be generated. 
+
 #### MidiHandler:
 
 - test_parsing_valid_midi_file: Checks if the MIDI file is parsed correctly, ensuring that the output is a list of integers representing notes.
@@ -42,7 +44,7 @@
 
 - Parameter for the n-gram size.
 
-## How to run the tests:
+## How to run the tests
 
 Run tests with the following command:
 
@@ -56,4 +58,6 @@ Create coverage report with the following command:
 poetry run invoke coverage-report
 ```
 
-## Coverage Report:
+## Coverage Report
+
+![image](https://github.com/sannilatvala/music-generator/assets/119106675/1afb9d5f-4fdd-45a9-b22c-b337230da954)
