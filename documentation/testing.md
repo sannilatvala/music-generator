@@ -8,7 +8,7 @@
 
 - test_generate_sequence: Verifies that the generated sequence has the specified length.
 
-- test_generated_note_chains_in_original_notes: Checks if the generated sequence consists of note chains (length = ngram+1) is present in the original sequences. This ensures that the markov chain agorithm and trie data structure works correctly.
+- test_generated_note_chains_in_original_notes: Checks if all note chains, with a length of ngram+1, in the generated sequence are present in the original sequences. This ensures that the markov chain algorithm and trie data structure works correctly.
 
 #### MidiHandler:
 
@@ -24,7 +24,7 @@
 
 - test_end_of_sequence: Verifies that end-of-sequence flags are correctly set for nodes representing the end of a sequence.
 
-## Inputs Used for Testing:
+## Inputs Used for Testing
 
 #### MarkovChain:
 
