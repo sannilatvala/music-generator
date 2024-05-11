@@ -71,7 +71,6 @@ The structure of the project is divided into several components:
 
 - Adding more comments to clarify logic.
 
-
 ## Use of Extensive Language Models
 
 I have used ChatGPT to explain me parts of how the algorithms I used works, as I've noticed that ChatGPT is good at explaining the logic behind code. In addition, whenever I've had trouble with errors in my code that I couldn't quite figure out, I've asked ChatGPT to pinpoint the issue and suggest ways to fix it.

@@ -2,6 +2,8 @@
 
 ## What has been tested and how?
 
+### Unittests
+
 #### MarkovChain:
 
 - test_create_model: This test ensures that the Markov chain model is created correctly by checking if all unique notes in the input sequences are present as children of the root node in the trie.
@@ -26,7 +28,7 @@
 
 - test_end_of_sequence: Verifies that end-of-sequence flags are correctly set for nodes representing the end of a sequence.
 
-## Inputs Used for Testing
+### Inputs used for testing
 
 #### MarkovChain:
 
@@ -34,15 +36,24 @@
 - Parameters for n-gram size and desired sequence length.
 
 #### MidiHandler:
+
 - MIDI files for testing both valid and invalid inputs.
 
 - Generated sequence of notes for creating and saving a MIDI file.
 
-
 #### Trie:
+
 - Sequences of musical notes for testing trie insertion.
 
 - Parameter for the n-gram size.
+
+## Other testing
+
+End-to-End Testing: I have manually tested the entire system workflow with different input data to ensure all components work together.
+
+Integration testing: I ensured that all individual components (MarkovChain, MidiHandler, and Trie) worked together.
+
+For both End-to-End and integration testing I gathered relevant data, such as MIDI files, to use as input for testing. Then I observed how the components interacted and ensured that they produced the expected results.
 
 ## How to run the tests
 
