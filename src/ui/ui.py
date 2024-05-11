@@ -1,5 +1,4 @@
 import os
-from traceback import print_tb
 from models.markov_chain import MarkovChain
 from midi.midi import MidiHandler
 from midi.midi_player import MidiPlayer
