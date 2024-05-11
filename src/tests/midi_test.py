@@ -29,8 +29,8 @@ class TestMidiHandler(unittest.TestCase):
         """
 
         invalid_midi_file = "invalid.mid"
-        notes = self.midi_handler.parse_midi_file(invalid_midi_file)
-        self.assertEqual(notes, [])
+        with self.assertRaises(FileNotFoundError):
+            self.midi_handler.parse_midi_file(invalid_midi_file)
 
     def test_create_and_save_midi(self):
         """
