@@ -33,3 +33,5 @@ class MidiPlayer:
         except KeyboardInterrupt:
             print(RED + "\nPlayback interrupted by user." + RESET)
             pygame.mixer.music.stop()
+        except Exception as e:
+            raise RuntimeError(f"Error playing MIDI file: {e}") from e
